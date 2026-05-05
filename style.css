@@ -45,7 +45,7 @@ a:hover { text-decoration: underline; }
   height: 60px;
 }
 .logo { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-weight: 700; font-size: 1.1rem; }
-.logo-glyph { font-size: 1.3rem; }
+.logo-glyph { height: 1.5rem; width: auto; display: block; }
 .logo-text { letter-spacing: -.5px; }
 .site-header nav { display: flex; gap: 28px; }
 .site-header nav a { color: var(--text-dim); font-size: .9rem; font-weight: 500; }
@@ -108,7 +108,8 @@ a:hover { text-decoration: underline; }
 /* ─── Footer ───────────────────────────────────────────────────────────────── */
 .site-footer { padding: 32px 0; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-.footer-logo { font-family: var(--mono); font-weight: 700; font-size: .95rem; }
+.footer-logo { font-family: var(--mono); font-weight: 700; font-size: .95rem; display: flex; align-items: center; gap: 6px; }
+.footer-logo-img { height: 1rem; width: auto; }
 .footer-nav { display: flex; gap: 24px; }
 .footer-nav a { color: var(--text-dim); font-size: .87rem; }
 .footer-copy { color: var(--text-dim); font-size: .83rem; }
@@ -139,3 +140,4 @@ a:hover { text-decoration: underline; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .site-header nav { gap: 16px; }
 }
+
