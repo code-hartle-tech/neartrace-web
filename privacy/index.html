@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NearTrace Privacy Policy — what we collect, where it lives, and what leaves your device.">
+  <meta name="theme-color" content="#0d0d0d">
+  <title>Privacy Policy — NearTrace</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo" style="text-decoration:none;color:inherit;">
+        <span class="logo-glyph">📡</span>
+        <span class="logo-text">NearTrace</span>
+      </a>
+      <nav>
+        <a href="/privacy">Privacy</a>
+        <a href="https://github.com/code-hartle-tech/neartrace-android-mvp" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="policy-header">
+      <div class="container">
+        <h1>Privacy Policy</h1>
+        <p class="policy-meta">Last updated: May 2026 &nbsp;·&nbsp; NearTrace for Android</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="policy-body">
+
+        <p>NearTrace is a Bluetooth Low Energy and Wi-Fi proximity logger. It runs on your phone, catalogues nearby radios, lets you pin specific devices, and alerts you when a pinned device drops out of range. This page explains what NearTrace stores, where it lives, and what — if anything — leaves your device.</p>
+
+        <blockquote>The short version: <strong>everything stays on your phone unless you explicitly opt in to share it.</strong> No analytics, no ads, no account, no telemetry. You can erase all of it at any time.</blockquote>
+
+        <h2>Who runs NearTrace</h2>
+        <p>NearTrace is published by an individual developer, Robert Hartle. For privacy questions, contact <a href="mailto:rbfghrtl@gmail.com">rbfghrtl@gmail.com</a>.</p>
+
+        <h2>What NearTrace stores on your device</h2>
+        <p>When you scan, the app records the radios it observes. For each device it sees, NearTrace may keep:</p>
+        <ul>
+          <li><strong>Bluetooth Low Energy:</strong> the device address (MAC), advertised name, signal strength (RSSI), the manufacturer name resolved from the OUI prefix, the time it was first and last seen, and any Continuity / Find-My-style records the device emits.</li>
+          <li><strong>Wi-Fi access points:</strong> the BSSID, SSID (network name) when broadcast, frequency, capability/encryption flags, signal strength, and the same first/last seen timestamps.</li>
+          <li><strong>Approximate location:</strong> if you grant location permission, NearTrace tags each sighting with a GPS coordinate, accuracy radius, and a short on-device path of where you were when you saw the device. Location is used only to draw the map and attribute sightings; it is never sent off-device by default.</li>
+          <li><strong>User-added details:</strong> custom name, model, icon, and any photo you take of the device through the app.</li>
+          <li><strong>Settings and preferences:</strong> RSSI threshold, source filter, theme choice, hidden device list, baseline snapshots.</li>
+          <li><strong>Optional credentials and rules:</strong> WiGLE API name + token (only if you configure WiGLE), webhook URLs and match patterns (only if you create webhook rules).</li>
+        </ul>
+
+        <p>All of this lives in the app's private storage on your device. Credentials and webhook URLs are encrypted at rest with a key held in the Android Keystore. The Room database, photos, exports, and other settings are stored in app-private storage that other apps cannot read on a non-rooted device.</p>
+
+        <p>NearTrace explicitly disables Android Auto Backup (<code>android:allowBackup="false"</code>) so your scan history and credentials are never silently copied to your Google account.</p>
+
+        <h2>What leaves your device — and only if you ask</h2>
+        <p>NearTrace makes no automatic network requests for your data. The off-device traffic listed below happens only in response to actions you take:</p>
+
+        <h3>1. Vendor lookup (automatic, anonymous)</h3>
+        <p>To translate a Bluetooth or Wi-Fi address's first three bytes (the OUI prefix) into a manufacturer name, NearTrace queries <code>api.macvendors.com</code>. <strong>Only the OUI prefix</strong> — the first 8 hex characters — is sent, never the full MAC address. The OUI is shared by every device from that manufacturer, so this lookup does not identify a specific device. Results are cached locally so each prefix is requested at most once.</p>
+
+        <h3>2. Map tiles (only when you open a map)</h3>
+        <p>The Maps screen is rendered by the Google Maps SDK for Android. Google receives whatever data the SDK needs to render tiles around your location. We don't send Google any device-identifier data; the SDK fetches its own tiles. Their privacy policy applies to that traffic: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+
+        <h3>3. WiGLE upload (off by default)</h3>
+        <p>If you configure a WiGLE API name and token in Settings and tap <strong>Upload now</strong>, NearTrace sends a CSV of your captured Wi-Fi sightings — BSSIDs, signal strengths, and GPS coordinates if available — to <code>api.wigle.net</code>. WiGLE is a US-based crowd-sourced wireless survey project. They control retention and may publish anonymised aggregates.</p>
+        <p><strong>The very first time you upload, NearTrace shows a consent dialog spelling this out</strong> and waits for your explicit OK. After that, subsequent uploads are silent until you clear your WiGLE credentials. To stop future uploads, clear your WiGLE credentials in Settings. NearTrace cannot recall data already submitted to WiGLE.</p>
+
+        <h3>4. Webhooks (off by default)</h3>
+        <p>If you create webhook rules, NearTrace POSTs a small JSON document (the device address, name, vendor, signal, kind, optional coordinates, and timestamp) to whatever URL you supply, when a matching device is sighted. Loopback, RFC 1918, link-local, and IPv6 unique-local addresses are blocked at rule-save time so a sighting cannot trigger an action against your home router or another internal system.</p>
+        <p>You control where webhooks go. Whatever happens to the data after it reaches your URL is between you and the operator of that endpoint.</p>
+
+        <h3>5. Privacy-policy link</h3>
+        <p>Tapping the "Privacy Policy" entry in the About screen opens this page in your default browser. The browser request reaches whoever hosts this page. NearTrace does not log it.</p>
+
+        <h2>What NearTrace does <em>not</em> collect</h2>
+        <ul>
+          <li>No analytics. No Firebase, Sentry, Amplitude, or similar telemetry SDK.</li>
+          <li>No advertising. No ad-network SDKs, no ad ID.</li>
+          <li>No account. There is no sign-in, no profile, no device fingerprint.</li>
+          <li>No background sync. The tracker monitor runs only while you have an active scan in v1.</li>
+          <li>No microphone or contact list access.</li>
+        </ul>
+
+        <h2>Permissions and why</h2>
+        <table>
+          <thead>
+            <tr><th>Permission</th><th>Why</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>BLUETOOTH_SCAN</code>, <code>BLUETOOTH_CONNECT</code></td><td>Discover BLE devices and connect briefly to enumerate their GATT services.</td></tr>
+            <tr><td><code>BLUETOOTH_ADVERTISE</code></td><td>Optional iBeacon broadcaster (off by default).</td></tr>
+            <tr><td><code>ACCESS_FINE_LOCATION</code>, <code>ACCESS_COARSE_LOCATION</code></td><td>Android requires these to scan for BLE and Wi-Fi devices. NearTrace also uses your location to attribute sightings on the map.</td></tr>
+            <tr><td><code>ACCESS_WIFI_STATE</code>, <code>CHANGE_WIFI_STATE</code>, <code>NEARBY_WIFI_DEVICES</code></td><td>List nearby Wi-Fi access points.</td></tr>
+            <tr><td><code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code></td><td>Make the optional outbound requests listed above (vendor lookup, maps, WiGLE, webhooks).</td></tr>
+            <tr><td><code>CAMERA</code></td><td>Capture photos of devices you've identified, and the AR Locate viewfinder. Images stay on your device.</td></tr>
+            <tr><td><code>POST_NOTIFICATIONS</code></td><td>Show tracker leave-behind alerts.</td></tr>
+          </tbody>
+        </table>
+        <p>You can revoke any permission in your phone's settings at any time. NearTrace degrades gracefully — denying a permission disables only the feature that needs it.</p>
+
+        <h2>Data retention and the Red Button</h2>
+        <p>Scan history persists until you clear it. The <strong>"Burn all data"</strong> button in Settings:</p>
+        <ol>
+          <li>Truncates the scan database tables.</li>
+          <li>Closes and deletes the SQLite files (including WAL and journal).</li>
+          <li>Wipes both the plain and encrypted preference files.</li>
+          <li>Drops the Android Keystore alias that protects the encrypted preferences — once the alias is gone, any encrypted bytes that survive on flash storage are mathematically unreadable. This is called cryptographic erasure.</li>
+          <li>Deletes captured photos, exported reports, and any tool files.</li>
+          <li>Clears in-memory caches.</li>
+          <li>Exits the app.</li>
+        </ol>
+        <p>There is no undo after you type the confirmation word.</p>
+
+        <h2>Children</h2>
+        <p>NearTrace is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+        <h2>International transfers</h2>
+        <p>If you opt in to WiGLE upload, your scan CSV is transmitted to a US-based service. If you create webhooks pointed at endpoints outside your country, that traffic crosses borders too. In both cases the routing is determined by you, not by NearTrace.</p>
+
+        <h2>Changes to this policy</h2>
+        <p>Material changes will be noted here with an updated date. Continued use of NearTrace after a change constitutes acceptance of the updated policy.</p>
+
+        <h2>Contact</h2>
+        <p>Questions? <a href="mailto:rbfghrtl@gmail.com">rbfghrtl@gmail.com</a></p>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="/" class="footer-logo" style="text-decoration:none;color:inherit;">📡 NearTrace</a>
+        <nav class="footer-nav">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="https://github.com/code-hartle-tech/neartrace-android-mvp" target="_blank" rel="noopener">GitHub</a>
+        </nav>
+        <span class="footer-copy">© 2026 Robert Hartle</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
