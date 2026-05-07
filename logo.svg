@@ -1,14 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Radar arcs -->
-  <circle cx="32" cy="36" r="28" stroke="#00e5ff" stroke-width="2" stroke-opacity="0.25"/>
-  <circle cx="32" cy="36" r="19" stroke="#00e5ff" stroke-width="2" stroke-opacity="0.45"/>
-  <circle cx="32" cy="36" r="10" stroke="#00e5ff" stroke-width="2" stroke-opacity="0.7"/>
-  <!-- Center dot -->
-  <circle cx="32" cy="36" r="3" fill="#00e5ff"/>
-  <!-- Sweep line -->
-  <line x1="32" y1="36" x2="52" y2="14" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
-  <!-- Blip on sweep -->
-  <circle cx="46" cy="20" r="2.5" fill="#00e5ff" opacity="0.85"/>
-  <!-- Top signal bars (Bluetooth-style) -->
-  <path d="M26 10 L32 4 L38 10" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+<!--
+  NearTrace brand mark — Logo v8 option 102 ("both in · dual phosphor").
+  Pinched amber N + pinched cyan T with a magenta target-lock crosshair
+  at the N×T intersection. Two channels collapsing on the same target.
+  Matches the printed brand sheet and the Android launcher icon.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" role="img" aria-label="NearTrace">
+  <!-- Amber N — pinched-in vertical rails + diagonal cross-stroke -->
+  <g stroke="#FFB000" stroke-width="1.6" fill="none">
+    <path d="M3 3 Q 9 50, 3 97"/>
+    <path d="M14 3 Q 20 50, 14 97"/>
+    <path d="M97 3 Q 91 50, 97 97"/>
+    <path d="M86 3 Q 80 50, 86 97"/>
+    <path d="M3 3 L14 3 L97 97 L86 97 Z"/>
+  </g>
+  <!-- Cyan T — 4 horizontal bars + 2 pinched-in vertical strokes -->
+  <g stroke="#00F3FF" stroke-width="1.6" fill="none">
+    <line x1="3" y1="3" x2="97" y2="3"/>
+    <line x1="3" y1="14" x2="97" y2="14"/>
+    <line x1="3" y1="86" x2="97" y2="86"/>
+    <line x1="3" y1="97" x2="97" y2="97"/>
+    <path d="M44.5 3 Q 51 50, 44.5 97"/>
+    <path d="M55.5 3 Q 49 50, 55.5 97"/>
+  </g>
+  <!-- Magenta target-lock crosshair at the N×T intersection -->
+  <g stroke="#FF1493" stroke-width="1.6" stroke-linecap="round">
+    <line x1="38" y1="50" x2="46" y2="50"/>
+    <line x1="54" y1="50" x2="62" y2="50"/>
+    <line x1="50" y1="38" x2="50" y2="46"/>
+    <line x1="50" y1="54" x2="50" y2="62"/>
+  </g>
 </svg>
